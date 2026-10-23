@@ -1,3 +1,5 @@
+# Publication template. The data paths and HPC values below are placeholders;
+# copy this file to an untracked location and customize it before running.
 [dataset]
 name = "alpaca-hum-spatiotemporal"
 timezone = "Australia/Adelaide"

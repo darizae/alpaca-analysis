@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the version-specific archived release."
+title: "Alpaca Analysis: Corpus Curation and Spatiotemporal Analysis Workflows for Alpaca Vocalization Research"
+type: software
+authors:
+  - family-names: Ariza
+    given-names: Daniel
+abstract: >-
+  Research software for cleaning and deduplicating an alpaca hum corpus,
+  preparing reproducible research datasets, and running H1/H2 statistical
+  workflows that link vocalization timing with GPS-derived movement and group
+  dispersion measures.
+version: 0.1.0
+license: GPL-3.0-only
+repository-code: "https://github.com/darizae/alpaca-analysis"
+url: "https://github.com/darizae/alpaca-analysis"

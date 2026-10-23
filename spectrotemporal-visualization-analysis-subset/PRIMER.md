@@ -16,6 +16,10 @@ No backwards compatibility is required. Prefer deleting obsolete paths and comma
 
 ## Retained Artifacts
 
+The paths below name the canonical outputs expected by the workflows. They are
+not tracked in this public software repository and require the separately
+governed research inputs and a successful local or HPC run.
+
 The analysis artifacts to preserve are:
 
 - `backend/data/processed/analysis/base`

@@ -1,3 +1,5 @@
+# Publication template only. Replace all input, artifact, and HPC values with
+# authorized local/site-specific paths before running.
 launch_label: launch_2026-05-27_full_corpus_dedup_overlap_v4_async
 artifact_root: ../artifacts/dedup_full_corpus
 input_table: ../artifacts/full_inference_runs/RF_run_on_FULL_Run_1_prediction-review-raven_bundle-e0aa814d-9f9/metadata_backfill/cleaned_enriched_detections.parquet

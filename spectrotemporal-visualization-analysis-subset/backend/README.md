@@ -1,53 +1,58 @@
-# Thesis Analysis Code
+# Alpaca Spatiotemporal Analysis Backend
 
-This folder contains the code for the H1 and H2 analysis tables.
+Python 3.12 package for preparing the analysis-base dataset and running the
+retained H1 post-hum cohesion and H2 hum-timing/group-dispersion workflows.
 
-It is a trimmed code copy. It keeps the backend, scripts, tests, and analysis docs. It does not include the old web app.
-
-## What This Code Reads
-
-| Input | Path |
-|---|---|
-| Cleaned corpus | `Published\Data\Corpus construction` |
-| Analysis base tables | `Published\Data\Analysis base` |
-| H1 final outputs | `Published\Data\H1 Contact Reinforcement` |
-| H2 final outputs | `Published\Data\H2 Contact Maintenance` |
-
-## Install
+## Install and test
 
 From the `alpaca-analysis` repository root:
 
-```bat
-conda activate alpaca-thesis
-python -m pip install -e "spectrotemporal-visualization-analysis-subset/backend[dev]"
+```bash
+uv sync --project spectrotemporal-visualization-analysis-subset/backend \
+  --extra dev --locked
+uv run --project spectrotemporal-visualization-analysis-subset/backend \
+  pytest spectrotemporal-visualization-analysis-subset/backend/tests
 ```
 
-## Test
+## External inputs
 
-```bat
-python -m pytest spectrotemporal-visualization-analysis-subset\backend\tests
+No real research dataset is included. Copy `config/default.toml` to an
+untracked local path and replace its template paths and, if needed, remote/HPC
+settings. The backend requires the separately deposited cleaned corpus,
+metadata-backfill tables, recorder sidecars, and GPS records. `fetch-sidecars`
+also requires SSH access to the configured raw-recording store.
+
+## Prepare analysis inputs
+
+```bash
+CONFIG=/absolute/path/to/local.toml
+
+uv run --project spectrotemporal-visualization-analysis-subset/backend \
+  stv-backend --config "$CONFIG" build-dataset
+uv run --project spectrotemporal-visualization-analysis-subset/backend \
+  stv-backend --config "$CONFIG" build-analysis-base
+uv run --project spectrotemporal-visualization-analysis-subset/backend \
+  stv-backend --config "$CONFIG" verify-dataset
 ```
 
-## Small Included-Data Check
+## Scientific launches
 
-The easiest check is the top-level helper script:
+Create a launch with analysis ID `rq1-post-hum-cohesion` or
+`rq2-hum-timing-group-dispersion`, then execute its stages in manifest order:
 
-```bat
-python Code\Tools\run_small_real_data_check.py --rows 8
+```bash
+uv run --project spectrotemporal-visualization-analysis-subset/backend \
+  stv-analysis --config "$CONFIG" launch create rq1-post-hum-cohesion \
+  --label release-run --profile full \
+  --input-manifest /path/to/analysis/base/manifest.json
+
+uv run --project spectrotemporal-visualization-analysis-subset/backend \
+  stv-analysis --config "$CONFIG" launch run-stage rq1-post-hum-cohesion \
+  --launch-dir /path/to/launch --stage units
 ```
 
-It builds small H1 and H2 model-input tables from included real data. It stops before full statistical model fitting.
-
-## Full Python Stage Order
-
-Use this only for a serious rerun. It can take a long time.
-
-H1 stages:
-
-`units`, `filtered_trace_grids`, `filtered_window_inventory`, `blocker_scan`, `blocker_merge`, `raw_trace_grids`, `window_validity`, `centroid_distance`, `baseline_covariates`, `covariate_table`, `matched_controls`, `model_input`, `reports`
-
-H2 stages:
-
-`units`, `gps_filter_audit`, `trace_grids`, `window_grid`, `dispersion_features`, `hum_rate_features`, `model_input`, `scientific_glmm`, `diagnostics_outputs`, `reports`
-
-Use the same `stv-analysis ... launch run-stage ... --stage STAGE_NAME` pattern shown in the smoke run.
+The full stage order and compute classification are defined in the launch
+manifest and documented in `../PRIMER.md` and `../docs/`. H2's
+`scientific_glmm` stage and related final fits require R packages including
+`glmmTMB` and `DHARMa`. Canonical full runs also require the configured SLURM
+environment; unit and integration tests do not.
