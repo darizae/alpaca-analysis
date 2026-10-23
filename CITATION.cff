@@ -11,6 +11,8 @@ abstract: >-
   workflows that link vocalization timing with GPS-derived movement and group
   dispersion measures.
 version: 0.1.0
+doi: 10.5281/zenodo.23599881
+date-released: 2026-10-23
 license: GPL-3.0-only
 repository-code: "https://github.com/darizae/alpaca-analysis"
 url: "https://github.com/darizae/alpaca-analysis"

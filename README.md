@@ -1,5 +1,7 @@
 # Alpaca Analysis
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23599881.svg)](https://doi.org/10.5281/zenodo.23599881)
+
 Research software for corpus curation and the statistical analyses used to
 study relationships between alpaca hum vocalizations, GPS-derived movement,
 and group dispersion. This repository supports the analysis stage of the
@@ -154,9 +156,9 @@ not contain substitute research data.
 
 ## Citation and license
 
-Citation metadata are in [`CITATION.cff`](CITATION.cff). Cite the exact archived
-software release used in a study; a version-specific DOI can be added after a
-GitHub release is archived.
+Citation metadata are in [`CITATION.cff`](CITATION.cff). Version 0.1.0 is
+archived on Zenodo as
+[`10.5281/zenodo.23599881`](https://doi.org/10.5281/zenodo.23599881).
 
 This software is licensed under the [GNU General Public License v3.0
 only](LICENSE).
