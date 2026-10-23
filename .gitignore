@@ -1,0 +1,12 @@
+.DS_Store
+.idea/
+.vscode/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+/results/
+/spectrotemporal-visualization-analysis-subset/data/

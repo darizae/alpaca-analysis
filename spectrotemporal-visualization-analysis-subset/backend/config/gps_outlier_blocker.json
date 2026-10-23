@@ -1,0 +1,15 @@
+{
+  "name": "bottom-left gps outlier blocker",
+  "description": "Buffered exclusion zone derived from the 7 forbidden GPS outlier hum detections reviewed on 2026-05-18.",
+  "selection_source": "private/gps_outlier_hums_metadata.csv",
+  "buffer_meters": 15,
+  "points": [
+    [138.68713833333334, -34.52695666666666],
+    [138.68720833333333, -34.52701666666667],
+    [138.68711166666668, -34.52697833333333],
+    [138.68717333333333, -34.526968333333336],
+    [138.68717333333333, -34.526968333333336],
+    [138.68712166666666, -34.527015],
+    [138.68707166666667, -34.526995]
+  ]
+}

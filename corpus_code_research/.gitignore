@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+artifacts
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+
+# Environment
+.env
+
+# Build
+packages/frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+.claude/.cache/
+
+# Playwright
+test-results/
+playwright-report/
+.playwright-browsers/
+/docs/20250211_075558.CSV
+/docs/alpaca-hums-preset-example.txt
+.turbo
+node_modules
+dist
+coverage
+.DS_Store
+/full_inference_runs/

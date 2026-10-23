@@ -1,0 +1,55 @@
+[dataset]
+name = "alpaca-hum-spatiotemporal"
+timezone = "Australia/Adelaide"
+
+[paths]
+raw_corpus_dir = "../../../../../Published/Data/Corpus construction"
+sidecar_cache_dir = "../data/cache/sidecars"
+processed_dir = "../data/processed"
+intermediate_dir = "../data/processed/intermediate"
+gps_blocker_path = "../config/gps_outlier_blocker.json"
+
+[remote]
+ssh_host = "hpc-cluster"
+canonical_raw_root = "/cluster/projects/alpaca/data/raw_audio_collection"
+
+[analysis_hpc]
+host = "hpc-cluster"
+partition = "compute"
+account = "alpaca-project"
+remote_repo_root = "/cluster/projects/alpaca/spectrotemporal-visualization"
+remote_venv_path = "/cluster/projects/alpaca/alpaca-pipelines/.venv"
+module_loads = ["gcc/13.2.0", "r/4.5.2"]
+
+[analysis_hpc.environment]
+R_LIBS_USER = "/cluster/projects/alpaca/alpaca-pipelines/r-library/4.5"
+
+[analysis_hpc.resources.light]
+cpus_per_task = 2
+memory_gb = 8
+time_limit = "00:20:00"
+array_concurrency = 1
+
+[analysis_hpc.resources.heavy]
+cpus_per_task = 4
+memory_gb = 16
+time_limit = "02:00:00"
+array_concurrency = 8
+
+[analysis_hpc.resources.materialize_48h]
+cpus_per_task = 4
+memory_gb = 64
+time_limit = "48:00:00"
+array_concurrency = 1
+
+[analysis_hpc.resources.robustness]
+cpus_per_task = 4
+memory_gb = 16
+time_limit = "12:00:00"
+array_concurrency = 4
+
+[analysis_hpc.resources.model_fit]
+cpus_per_task = 4
+memory_gb = 64
+time_limit = "48:00:00"
+array_concurrency = 3

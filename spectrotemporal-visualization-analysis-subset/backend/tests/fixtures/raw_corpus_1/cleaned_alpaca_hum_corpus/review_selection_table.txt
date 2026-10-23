@@ -1,0 +1,5 @@
+Selection	View	Channel	Begin Time (s)	End Time (s)	review_row_key	wav_basename	source_audio_file	source_start_s	source_end_s	audio_collection_name
+1	1	1	0.0	0.45	evt-1	test_20250203_040000.WAV	/cluster/projects/alpaca/data/raw_audio_collection/audio_collection_TEST_m1_20250213/raw_recordings/test_20250203_040000.WAV	30.0	31.0	audio_collection_TEST_m1_20250213
+2	1	1	0.55	1.00	evt-2	test_20250203_040000.WAV	/cluster/projects/alpaca/data/raw_audio_collection/audio_collection_TEST_m1_20250213/raw_recordings/test_20250203_040000.WAV	90.0	91.0	audio_collection_TEST_m1_20250213
+3	1	1	1.10	1.55	evt-3	companion_20250203_040000.WAV	/cluster/projects/alpaca/data/raw_audio_collection/audio_collection_COMPANION_m2_20250213/raw_recordings/companion_20250203_040000.WAV	31.0	32.0	audio_collection_COMPANION_m2_20250213
+4	1	1	1.65	2.10	evt-4	companion_20250203_040000.WAV	/cluster/projects/alpaca/data/raw_audio_collection/audio_collection_COMPANION_m2_20250213/raw_recordings/companion_20250203_040000.WAV	91.0	92.0	audio_collection_COMPANION_m2_20250213

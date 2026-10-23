@@ -1,0 +1,65 @@
+launch_label: launch_2026-05-27_local_template_dedup_overlap_v4
+artifact_root: ../artifacts/dedup_full_corpus
+
+# Template only. Replace these with a reachable local smoke subset or local WAV mirrors
+# before running outside pytest.
+input_table: ../artifacts/dedup_full_corpus/local_smoke_input/cleaned_enriched_detections.parquet
+source_wav_index: ../artifacts/dedup_full_corpus/local_smoke_input/source_wav_metadata_index.parquet
+
+algorithm_version: overlap_temporal_v4
+row_limit: 48
+top_k_models: 2
+exemplars_per_model: 4
+feature_shard_size_wavs: 1
+
+overlap_fraction_short_thresholds: [0.05, 0.25]
+gps_thresholds_m: [2.0, 4.0]
+relative_difference_thresholds: [null, 0.20]
+group_acoustic_thresholds: [null, q75]
+
+robustness:
+  acoustic_margin_quantile: 0.25
+  target_acoustic_margin: 0.10
+  min_final_selectable_acoustic_coverage: 0.95
+  decision_acoustic_core_weight: 0.75
+  removal_count_stability_weight: 0.25
+
+feature:
+  frame_length: 1024
+  hop_length: 512
+  n_fft: 2048
+  noise_floor_quantile: 0.20
+  f0_min_prominence_ratio: 0.10
+  spectral_smoothing_bins: 5
+
+hpc:
+  host: hpc-cluster
+  partition: compute
+  account: alpaca-project
+  remote_repo_root: /cluster/projects/alpaca/corpus_code_research
+  remote_venv_path: /cluster/projects/alpaca/alpaca-pipelines/.venv
+  features:
+    cpus_per_task: 2
+    memory_gb: 8
+    time_limit: 00:20:00
+    array_concurrency: 2
+  feature_merge:
+    cpus_per_task: 2
+    memory_gb: 8
+    time_limit: 00:10:00
+    array_concurrency: 1
+  grid:
+    cpus_per_task: 2
+    memory_gb: 8
+    time_limit: 00:20:00
+    array_concurrency: 2
+  aggregate:
+    cpus_per_task: 2
+    memory_gb: 8
+    time_limit: 00:10:00
+    array_concurrency: 1
+  exemplars:
+    cpus_per_task: 2
+    memory_gb: 8
+    time_limit: 00:10:00
+    array_concurrency: 1

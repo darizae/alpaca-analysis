@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spectrotemporal-backend"
+version = "0.1.0"
+description = "Data preparation and retained scientific analysis workflows for the spectrotemporal thesis."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "matplotlib>=3.9,<4.0",
+  "numpy>=2.0,<3.0",
+  "pandas>=2.2,<3.0",
+  "pyarrow>=16,<20",
+  "scipy>=1.14,<2.0",
+  "shapely>=2.0,<3.0",
+  "statsmodels>=0.14.4,<0.15",
+  "tzdata>=2024.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2,<9.0",
+]
+
+[project.scripts]
+stv-backend = "stv_backend.cli:main"
+stv-analysis = "stv_analysis.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stv_backend", "src/stv_analysis", "src/stv_core"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
